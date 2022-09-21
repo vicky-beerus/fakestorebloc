@@ -7,7 +7,7 @@ class ProductModel {
 
   ProductModel({this.productName, this.productPrice, this.productImage});
 
-  factory ProductModel.fronJson(json) => ProductModel(
+  factory ProductModel.fromJson(json) => ProductModel(
       productName: json["title"],
       productPrice: json["price"],
       productImage: json["image"]);

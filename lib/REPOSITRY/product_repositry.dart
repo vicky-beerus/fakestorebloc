@@ -11,7 +11,7 @@ class ProductReposiry {
         await http.get(Uri.parse("https://fakestoreapi.com/products"));
 
     if (responce.statusCode == 200) {
-      return ProductModel.fronJson(json.decode(responce.body));
+      return ProductModel.fromJson(json.decode(responce.body));
     } else {
       throw Exception("failed");
     }
