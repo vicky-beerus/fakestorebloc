@@ -1,3 +1,4 @@
+import 'package:fakestorebloc/REPOSITRY/cart_repository.dart';
 import 'package:fakestorebloc/REPOSITRY/product_repositry.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const MyApp());
+
+
+
+
+
 }
 
 class MyApp extends StatelessWidget {
@@ -15,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
-      providers: [RepositoryProvider(create: (context) => ProductReposiry())],
+      providers: [RepositoryProvider(create: (context) => ProductReposiry()),RepositoryProvider(create: (context)=>CartRepository())],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(

@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 class ProductModel {
   String? productName;
-  String? productPrice;
+  double? productPrice;
   String? productImage;
 
   ProductModel({this.productName, this.productPrice, this.productImage});
 
   factory ProductModel.fromJson(json) => ProductModel(
-      productName: json["title"],
-      productPrice: json["price"],
-      productImage: json["image"]);
+      productName: json[0]["title"],
+      productPrice: json[0]["price"],
+      productImage: json[0]["image"]);
 
   Map<String, dynamic> toJson() => {
         "productName": productName,
