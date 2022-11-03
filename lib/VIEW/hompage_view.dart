@@ -25,9 +25,13 @@ class _HomePageState extends State<HomePage> {
           title: Text("Fake Store"),
           backgroundColor: Colors.pink,
           actions: [
-            IconButton(onPressed: (){
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>CartView()));
-            },icon: Icon(Icons.shopping_cart),)
+            IconButton(
+              onPressed: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => CartView()));
+              },
+              icon: Icon(Icons.shopping_cart),
+            )
           ],
         ),
         body: BlocBuilder<ProductBloc, ProductState>(
@@ -50,18 +54,66 @@ class _HomePageState extends State<HomePage> {
                         crossAxisSpacing: 10),
                     itemCount: state.product.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return InkWell(
-                        onTap: (){
-                          RepositoryProvider.of<ProductReposiry>(context).addItems(state.product[index]);
-                        },
+                      return Card(
                         child: Container(
-                          height: h * 0.15,
-                          width: w * 0.4,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Card(child: Image.network("${state.product[index]["image"]}")),
-                        ),
+                            height: h * 0.15,
+                            width: w * 0.4,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: h * 0.12,
+                                  width: w * 0.4,
+                                  padding: EdgeInsets.only(top: 5),
+                                  child: Image.network(
+                                    "${state.product[index]['image']}",
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: h * 0.01,
+                                ),
+                                Container(
+                                  height: h * 0.02,
+                                  width: w * 0.4,
+                                  child: Text("${state.product[index]["title"]}"
+                                      .toString()),
+                                ),
+                                SizedBox(
+                                  height: h * 0.01,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      height: h * 0.03,
+                                      width: w * 0.2,
+                                      child: Text(
+                                          ' ₹ ${state.product[index]['price']}'),
+                                    ),
+                                    Container(
+                                        height: h * 0.03,
+                                        width: w * 0.2,
+                                        child: IconButton(
+                                            onPressed: () {
+                                              RepositoryProvider.of<
+                                                          ProductReposiry>(
+                                                      context,
+                                                      listen: false)
+                                                  .addItems(
+                                                      state.product[index]);
+                                            },
+                                            icon: Icon(
+                                              Icons.add_shopping_cart_rounded,
+                                              color: Colors.pink,
+                                            )))
+                                  ],
+                                )
+                              ],
+                            )),
                       );
                     }),
               );
